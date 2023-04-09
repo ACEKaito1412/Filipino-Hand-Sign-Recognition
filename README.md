@@ -81,6 +81,48 @@ Make sure to include these dependencies in your Android project's build.gradle f
    - Start ngrok: `ngrok http 5000` (assuming Flask is running on port 5000)
 6. ngrok will generate a public URL, which you can use to access your Flask app remotely.
 
+## Usage
+
+To use the Filipino Hand Sign Recognition project, follow the steps below:
+
+1. Install the required dependencies by cloning the repository and creating a virtual environment with Python 3.10.9:
+
+   - git clone https://github.com/ACEKaito1412/Filipino-Hand-Sign-Recognition.git
+   - python3.10 -m venv myenv
+   - Replace myenv with your preferred environment name.
+
+2. Activate the virtual environment:
+
+   - For Windows: myenv\Scripts\activate
+   - For macOS/Linux: source myenv/bin/activate
+   - Install the required dependencies using pip:
+     - pip install -r requirements.txt
+
+3. Collect and process data for training the hand sign recognition model using Jupyter Notebook:
+
+   - Open collect_data.ipynb in Jupyter Notebook and collect necessary data, such as hand sign images, for training.
+   - After collecting data, open process_data.ipynb and run the data processing steps using Mediapipe to extract keypoints from the hand images and save them as NumPy files.
+
+4. Train the hand sign recognition model:
+
+   - In the training section of process_data.ipynb, train the hand sign recognition model using machine learning techniques. Make any necessary changes to the code if you have modified anything during the data collection or processing steps.
+
+   - Run the Android application:
+
+5. Install the required dependencies for the Android application, as mentioned in the README.
+
+6. Run the Android application on an Android device or emulator to capture and recognize hand signs in real-time from a video feed.
+
+7. Set up the server-side components:
+
+   - Go to ngrok.com and create an account/login to get unlimited time for using ngrok.
+   - Once logged in, download and install ngrok on your server.
+   - Copy the trained model file from the training directory to the server, and update the labels used in the model if needed.
+   - Start Flask server using python app.py (or the name of your Flask app file) and ngrok using ngrok http 5000 (assuming Flask is running on port 5000).
+   - ngrok will generate a public URL, which you can use to access your Flask app remotely.
+
+That's it! You can now use the Filipino Hand Sign Recognition project to recognize hand signs commonly used in Filipino Sign Language (FSL) in real-time for communication by individuals with hearing impairments in the Philippines.
+
 ## Contributing
 
 Contributions to the Filipino Hand Sign Recognition project are welcome! If you would like to contribute, please follow these steps:
@@ -140,7 +182,7 @@ Without the contributions of these individuals and the availability of these ope
 
 ## Contact
 
-For any questions or inquiries about the Filipino Hand Sign Recognition project, please contact ['macdon.jc.bscs@gmail.com'].
+For any questions or inquiries about the Filipino Hand Sign Recognition project, please contact [Jhun Carlo Macdon](mailto:macdon.jc.bscs@gmail.com).
 
 ## Appendix
 
