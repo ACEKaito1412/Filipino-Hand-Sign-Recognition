@@ -1,20 +1,61 @@
 # Filipino-Hand-Sign-Recognition
 
-[Project description or tagline]
-
-![Project Title](./images/project_title_image.jpg)
+![Project Title](./image/logo.png)
 
 ## Description
 
-Filipino Hand Sign Recognition is a project that uses the Mediapipe library to recognize hand signs commonly used in Filipino Sign Language (FSL). The project is divided into three main folders:
+This repository utilizes Mediapipe, a Python library for extracting hand keypoints from images, to train a model for Filipino Hand Sign Recognition (FHS). The extracted keypoints are stored as numpy arrays for training the model.
 
-- `training-model`: Contains the code and data for training the hand sign recognition model using machine learning techniques.
-- `application`: Contains the code for the application that uses the trained model to recognize hand signs in real-time from a video feed.
-- `server`: Contains the code for the server-side components of the application, such as API endpoints for processing hand sign recognition requests.
+Mediapipe provides a pre-trained hand detection model called "Mediapipe Hands" which can accurately detect hand landmarks, including keypoints such as wrist, palm, fingers, and finger joints. These keypoints are essential for understanding hand gestures and can be used as input data for training the FHS model.
 
-The project aims to provide a practical solution for real-time hand sign recognition in the context of FSL, which can be used for communication by individuals with hearing impairments in the Philippines.
+<p align="center">
+  <img src="/image/mediapipe_hands.jpg" alt="Mediapipe Hands">
+</p>
 
-![Project Description](./images/project_description_image.jpg)
+Our FHS model is trained on Filipino hand signs, excluding the letters "c, f, j, q, v, x, z", and has achieved high accuracy in recognizing Filipino hand signs.
+
+<p align="center">
+  <img src="/image/abakada_image.PNG" alt="Mediapipe Hands">
+</p>
+
+The repository includes separate directories for server, training, and application, each with its own set of instructions on how to use them.
+
+- `Server`: Contains the server-side code for hosting the FHS model and serving prediction requests.
+- `Training`: Contains the code and instructions for training the FHS model using the extracted keypoints and numpy arrays.
+- `Application`: Contains the code and instructions for using the trained FHS model in an application.
+
+Filipino Hand Sign Recognition is a project that uses the Mediapipe library to recognize hand signs commonly used in Filipino Sign Language (FSL). The project aims to provide a practical solution for real-time hand sign recognition in the context of FSL, which can be used for communication by individuals with hearing impairments in the Philippines.
+
+<p align="center">
+  <img src="/image/apk_display.PNG" alt="Application Display">
+</p>
+
+The application has three modes: Image recognition, real-time recognition, and hand movement recognition.
+
+Image Recognition:
+
+<p align="center">
+  <img src="/image/image_to_text.gif" alt="Image Recognition">
+</p>
+
+In static recognition mode, the application processes an image or a frame from a video and recognizes the hand action based on the extracted keypoints from the holistic model.
+
+Real-time Recognition:
+
+<p align="center">
+  <img src="/image/'abkd'.gif" alt="Real-time Recognition">
+</p>
+
+In real-time recognition mode, the application captures video frames in real-time and performs hand action recognition in real-time.
+
+Hand Movement Recognition:
+
+<p align="center">
+  <img src="/image/baby.gif" alt="Hand Movement Recognition">
+  <img src="/image/ooh lan.gif" alt="Hand Movement Recognition">
+</p>
+
+In hand movement recognition mode, the application tracks and recognizes specific hand movements or gestures using the hands, pose keypoints captured by the holistic model of Mediapipe.
 
 ## Table of Contents
 
@@ -35,7 +76,7 @@ The project aims to provide a practical solution for real-time hand sign recogni
    - For Windows: `myenv\Scripts\activate`
    - For macOS/Linux: `source myenv/bin/activate`
 
-4. Install the required dependencies: `pip install -r requirements.txt`, which includes:
+4. Install the required dependencies which includes:
    - mediapipe
    - opencv
    - tensorflow
@@ -96,7 +137,11 @@ To use the Filipino Hand Sign Recognition project, follow the steps below:
    - For Windows: myenv\Scripts\activate
    - For macOS/Linux: source myenv/bin/activate
    - Install the required dependencies using pip:
-     - pip install -r requirements.txt
+     - mediapipe
+     - opencv
+     - tensorflow
+     - pyngrok
+     - fastdtw
 
 3. Collect and process data for training the hand sign recognition model using Jupyter Notebook:
 

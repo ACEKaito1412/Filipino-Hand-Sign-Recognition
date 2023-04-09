@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:gravity="center"
+    tools:context=".TtoGesture">
+
+    <include layout="@layout/layout_top"/>
+
+
+    <LinearLayout
+        android:id="@+id/buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
+
+        <AutoCompleteTextView
+            android:layout_weight = "1"
+            android:layout_width = "wrap_content"
+            android:layout_height = "wrap_content"
+            android:textAlignment = "center"
+            android:gravity = "center"
+            android:id = "@+id/autoCompleteView"
+            android:layout_margin = "20dp"
+            android:hint="Enter a Word: "
+            android:completionThreshold="1"
+            android:maxLines = "1"/>
+
+        <Button
+            android:id="@+id/check_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin = "10dp"
+            android:text="Check"
+            android:textAlignment="center"
+            android:background="@color/purple_500"
+            android:textAllCaps = "false"
+            />
+    </LinearLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:id="@+id/recycleViewer"
+        />
+
+
+</LinearLayout>

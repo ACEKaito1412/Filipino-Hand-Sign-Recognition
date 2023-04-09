@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#212529"
+    android:parentActivityName=".activity_home"
+    tools:context=".ContactUs">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#212529">
+
+        <ImageView
+            android:id="@+id/about_fsl"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:cropToPadding="false"
+            android:scaleType="fitStart"
+            app:srcCompat="@drawable/about_fsl" />
+        <ImageView
+            android:id="@+id/contact"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:cropToPadding="false"
+            android:scaleType="fitStart"
+            app:srcCompat="@drawable/contact_us" />
+
+
+        <ImageButton
+            android:layout_margin="10dp"
+            android:id="@+id/btnGoBack"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:background="#212529"
+            android:cropToPadding="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/back"
+            android:text="Button Text" />
+
+    </LinearLayout>
+
+</ScrollView>

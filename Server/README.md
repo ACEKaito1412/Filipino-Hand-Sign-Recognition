@@ -13,7 +13,7 @@ This repository contains the Flask-based API for the Filipino Hand Sign Recognit
 
 1. Clone the repository to your local machine:
    - git clone https://github.com/yourusername/fhs-api.git
-2. Install the required dependencies: `pip install -r requirements.txt`, which includes:
+2. Install the required dependencies which includes:
 
    - mediapipe
    - opencv

@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:gravity="center"
+    tools:context=".Home">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:gravity="center">
+
+        <LinearLayout
+            android:layout_width="340dp"
+            android:layout_height="330dp"
+            android:layout_margin="5dp"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bgstyle"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="5dp"
+                >
+
+                <androidx.cardview.widget.CardView
+                    android:layout_margin="8dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    app:cardElevation="10dp"
+                    app:cardBackgroundColor="#00FFFFFF"
+                    app:cardCornerRadius="15dp"
+                    >
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="300dp"
+                        android:src="@drawable/background"/>
+
+                </androidx.cardview.widget.CardView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_margin="5dp"
+                    >
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_margin="5dp"
+                        >
+                        <TextView
+                            android:gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:textAlignment="center"
+                            android:background="@color/purple_500"
+                            android:padding="2dp"
+                            android:text="FILIPINO SIGN"/>
+                        <TextView
+                            android:layout_marginTop="5dp"
+                            android:padding="2dp"
+                            android:gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:textAlignment="center"
+                            android:background="@color/teal_200"
+                            android:text="LANGUAGE ON MOBILE"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center">
+                        <TextView
+                            android:id="@+id/btnStatus"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:background="@drawable/offline"
+                            android:textAlignment="center"
+                            />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            >
+
+            <LinearLayout
+                android:layout_width="160dp"
+                android:layout_height="330dp"
+                android:background="@drawable/bgstyle"
+                android:layout_margin="5dp"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="5dp"
+                >
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="99dp"
+                    android:layout_margin="5dp"
+                    app:cardCornerRadius="15dp"
+                    app:cardBackgroundColor="#00FFFFFF"
+                    >
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="140dp"
+                        android:src="@drawable/cloud"/>
+
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:textColor="@color/black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:text="Recognize Ulan Actions: A Filipino Nursery Rhyme"
+                    android:layout_margin="4dp"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="10sp"
+                    android:layout_margin="2dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="10sp"
+                    android:background="@drawable/bgstyle"
+                    android:text="Nerd Details"
+                    android:padding="3dp"
+                    android:layout_margin="5dp"/>
+
+                <Button
+                    android:id="@+id/btnUlan"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:text="Test"
+                    android:textSize="12sp"
+                    android:layout_margin="5dp"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="160dp"
+                android:layout_height="330dp"
+                android:orientation="vertical"
+                android:layout_margin="5dp"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/bgstyle"
+                    android:orientation="vertical"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:text="GUIDE: Learn How to use our Application"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+
+
+                    <Button
+                        android:id="@+id/btnGuide"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_margin="5dp"
+                        android:text="Learn"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="185dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/bgstyle"
+                    android:orientation="vertical"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:text="RECOGNIZE: 'A', 'BA', 'KA', 'DA'"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/bgstyle"
+                        android:padding="3dp"
+                        android:text="Nerd Details"
+                        android:textSize="10sp" />
+
+                    <Button
+                        android:id="@+id/btnAbakada"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:text="CAMERA"
+                        android:textSize="12sp" />
+
+                    <Button
+                        android:id="@+id/btnAbakadaImage"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:text="Image"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bgstyle"
+                android:layout_margin="5dp"
+                android:padding="5dp"
+                android:orientation="vertical"
+                >
+
+                <TextView
+                    android:textColor="@color/black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:text="RECOGNIZE: 'A', 'B', 'K', 'D'"
+                    android:layout_margin="5dp"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="10sp"
+                    android:background="@drawable/bgstyle"
+                    android:text="Nerd Details"
+                    android:padding="3dp"
+                    android:layout_margin="5dp"/>
+
+                <Button
+                    android:id="@+id/btnAUpdate"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_margin="5dp"
+                    android:clickable="false"
+                    android:text="Try Me"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            >
+
+            <LinearLayout
+                android:layout_width="160dp"
+                android:layout_height="140dp"
+                android:background="@drawable/bgstyle"
+                android:layout_margin="5dp"
+                android:padding="5dp"
+                android:orientation="vertical"
+                >
+
+                <TextView
+                    android:textColor="@color/black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:text="Text To Action: Create Actions"
+                    android:layout_margin="5dp"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="10sp"
+                    android:background="@drawable/bgstyle"
+                    android:text="Nerd Details"
+                    android:padding="3dp"
+                    android:layout_margin="5dp"/>
+
+                <Button
+                    android:id="@+id/btnTtoGesture"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_margin="5dp"
+                    android:clickable="false"
+                    android:text="Try Me"
+                    android:textSize="12sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="160dp"
+                android:layout_height="140dp"
+                android:background="@drawable/bgstyle"
+                android:layout_margin="5dp"
+                android:padding="5dp"
+                android:orientation="vertical"
+                >
+
+                <TextView
+                    android:textColor="@color/black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:text="See Any Problems, Suggestions We are Very Open !!"
+                    android:layout_margin="8dp"
+                    />
+
+                <TextView
+                    android:textColor="@color/black"
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:textSize="16sp"
+                    />
+
+                <Button
+                    android:id="@+id/btnJoinUs"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:text="Contact US"
+                    android:textSize="12sp"
+                    android:layout_margin="5dp"
+                    />
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

@@ -12,6 +12,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "Filipino Sign Language Translator"
+rootProject.name = "FHS"
 include ':app'
-include ':opencv'
