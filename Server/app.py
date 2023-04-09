@@ -7,7 +7,6 @@ import cv2
 import numpy as np
 import os
 from io import BytesIO
-from fastdtw import fastdtw
 
 
 app = Flask(__name__)
@@ -21,16 +20,21 @@ def after_request(response):
     return response
 
 
-# This specific endpoint allows to check the status of the server by sending a GET request to
-# the root endpoint, the endpoint returns a json object containing the message
-# "STATUS ONLINE", the timestamp of the request and the page name.
+#This endpoint is defined using the Flask web framework's @app.route() 
+#decorator with the route URL "/" and the HTTP method "GET". 
+#It maps the root URL of the web application to the home_page() function, 
+# which is triggered when a user sends a GET request to the root URL of the application. 
+# The home_page() function generates a JSON object data_set containing two key-value pairs: 
+# "Result" with the value "STATUS ONLINE" and "Timestamp" with the value of the current 
+# timestamp obtained from time.time() function. 
+# The json.dumps() function is then used to convert the Python dictionary data_set into a 
+# JSON string json_dump.
 @app.route("/", methods=["GET"])
 def home_page():
     data_set = {"Result": "STATUS ONLINE", "Timestamp": time.time()}
     json_dump = json.dumps(data_set)
 
-    return json_dump
-
+    return render_template("index.html", json_dump=json_dump)
 
 # This specific endpoint allows to get a user by passing the user name as a parameter,
 # the endpoint returns a json object containing the message
@@ -281,73 +285,3 @@ if __name__ == "__main__":
 
 
 # flask run --host=0.0.0.0
-# @app.route("/ulan_model/", methods=["POST"])
-# def handle_ulan():
-#     try:
-#         image_r = request.files["image"].read()
-
-#         pil_image = Image.open(BytesIO(image_r))
-
-#         image = np.array(pil_image)
-
-#         results = HOLISTIC_MODEL.process(image)
-
-#         pose = (
-#             np.array(
-#                 [[res.x, res.y, res.z] for res in results.pose_landmarks.landmark[0:16]]
-#             )
-#             if results.pose_landmarks
-#             else np.zeros([16, 3])
-#         )
-#         lh = (
-#             np.array(
-#                 [[res.x, res.y, res.z] for res in results.left_hand_landmarks.landmark]
-#             )
-#             if results.left_hand_landmarks
-#             else np.zeros([21, 3])
-#         )
-#         rh = (
-#             np.array(
-#                 [[res.x, res.y, res.z] for res in results.right_hand_landmarks.landmark]
-#             )
-#             if results.right_hand_landmarks
-#             else np.zeros([21, 3])
-#         )
-
-#         Landmark = np.concatenate([pose, lh, rh])
-
-#         if Landmark.shape != (58, 3):
-#             # shape needed is 58 , 3
-#             # get the first shape
-#             print(f"Invalid Shape: {Landmark.shape}")
-#             data_count = 58 - Landmark.shape[0]
-#             shapM = np.concatenate([Landmark, np.zeros([data_count, 3])])
-#             print(f"Re-Shape: {Landmark.shape}")
-
-#         DATA_LIST.append(Landmark)
-#         if len(DATA_LIST) == 30:
-#             # RES = MODEL_ULAN.predict(np.expand_dims(DATA_LIST, 0))
-#             # {CLASS_NAMES_ULAN[np.argmax(RES)]}
-#             data_set = {
-#                 "Result": f"GOODS",
-#                 "Timestamp": time.time(),
-#                 "Response": 200,
-#             }
-
-#             json_dump = json.dumps(data_set)
-#             DATA_LIST.clear()
-#             return json_dump
-#         else:
-#             data_set = {
-#                 "Result": f"{len(DATA_LIST)}",
-#                 "Timestamp": time.time(),
-#                 "Response": 200,
-#             }
-#             json_dump = json.dumps(data_set)
-
-#             return json_dump
-
-#     except Exception as e:
-#         data_set = {"Result": f"{e}", "Timestamp": time.time()}
-#         json_dump = json.dumps(data_set)
-#         return json_dump

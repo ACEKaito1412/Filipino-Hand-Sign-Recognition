@@ -1,4 +1,304 @@
-<center>
-  <h1>Streaming:</h1>
-  <img src="{{ url_for('video')}}" , width="50%" />
-</center>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>FHS API - Endpoint Information</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #f8f8f8;
+      }
+
+      h1 {
+        color: #333;
+        margin-bottom: 20px;
+      }
+
+      .endpoint-card {
+        background-color: #fff;
+        border-radius: 4px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+        padding: 20px;
+      }
+
+      .endpoint-card h2 {
+        color: #333;
+        margin-top: 0;
+        margin-bottom: 10px;
+      }
+
+      .endpoint-card p {
+        color: #666;
+        margin-top: 0;
+        margin-bottom: 10px;
+      }
+
+      .endpoint-card .endpoint-code {
+        background-color: #f8f8f8;
+        border-radius: 4px;
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Welcome to FHS API</h1>
+    <p>
+      The FHS API is a Flask-based API that provides various endpoints for
+      Filipino Hand Sign Recognition. It utilizes a trained model and uses
+      Mediapipe library for processing image data and collecting keypoints from
+      the image using load_img function. Additionally, it includes image
+      collection for training data coming from a phone. The API allows users to
+      interact with the hand sign recognition model by sending image data to
+      specific endpoints and receiving the recognized hand sign as a response.
+      The API aims to provide an easy and convenient way to integrate Filipino
+      hand sign recognition functionality into other applications or services.
+    </p>
+    <div class="endpoint-card">
+      <h2>/</h2>
+      <p>
+        This endpoint is defined using the Flask web framework's @app.route()
+        decorator with the route URL "/" and the HTTP method "GET". It maps the
+        root URL of the web application to the home_page() function, which is
+        triggered when a user sends a GET request to the root URL of the
+        application. The home_page() function generates a JSON object data_set
+        containing two key-value pairs: "Result" with the value "STATUS ONLINE"
+        and "Timestamp" with the value of the current timestamp obtained from
+        time.time() function. The json.dumps() function is then used to convert
+        the Python dictionary data_set into a JSON string json_dump.
+      </p>
+      <div class="endpoint-code">
+        <code>
+          <pre>
+            @app.route("/", methods=["GET"])
+              def home_page():
+                  data_set = {"Result": "STATUS ONLINE", "Timestamp": time.time()}
+                  json_dump = json.dumps(data_set)
+
+                  return render_template("index.html", json_dump=json_dump)
+                </pre
+          >
+        </code>
+      </div>
+    </div>
+
+    <div class="endpoint-card">
+      <h2>/load_img/</h2>
+      <p>
+        This endpoint allows you to send an image, which is processed using a
+        pre-trained model to detect hand landmarks and predict the letter of the
+        alphabet the hand is forming.
+      </p>
+      <div class="endpoint-code">
+        <code>
+          <pre>
+            @app.route("/load_img/", methods=["POST"])
+            def handle_image():
+                # Get the image file from the request
+            
+                try:
+                    image_data = request.files["image"].read()
+            
+                    pil_image = Image.open(BytesIO(image_data))
+            
+                    image = np.array(pil_image)
+            
+                    print(f"{image.shape[0]}, {image.shape[1]}, {image.shape[2]}")
+            
+                    # image = cv2.imdecode(np.frombuffer(image_data, np.uint8), -1)
+                    results = HANDS.process(image)
+            
+                    if results.multi_handedness is not None:
+                        data = []
+                        for res in results.multi_hand_landmarks:
+                            data = np.array([[rex.x, rex.y, rex.z] for rex in res.landmark])
+            
+                        RES = MODEL_ABAKADA.predict(np.expand_dims(data, 0))
+            
+                        print(f"{CLASS_NAMES[np.argmax(RES)]}")
+            
+                        data_set = {
+                            "Result": f"{CLASS_NAMES[np.argmax(RES)]}",
+                            "Result_2": f"{CLASS_NAMES2[np.argmax(RES)]}",
+                            "Timestamp": time.time(),
+                            "Response": 200,
+                        }
+                        json_dump = json.dumps(data_set)
+            
+                        return json_dump
+                    else:
+                        data_set = {
+                            "Result": "",
+                            "Result_2": "",
+                            "Timestamp": time.time(),
+                            "Response": 200,
+                        }
+                        json_dump = json.dumps(data_set)
+            
+                        return json_dump
+            
+                except Exception as e:
+            
+                    data_set = {"Result": f"{e}", "Timestamp": time.time()}
+                    json_dump = json.dumps(data_set)
+                    return json_dump
+            
+    </pre
+          >
+        </code>
+      </div>
+    </div>
+
+    <div class="endpoint-card">
+      <h2>/ulan_model/</h2>
+      <p>
+        This endpoint allows you to send images for processing using a model
+        called ULAN_MODEL.
+      </p>
+      <div class="endpoint-code">
+        <code>
+          <pre>
+
+            @app.route("/ulan_model/", methods=["POST"])
+            def handle_ulan():
+                DATA_LIST = []
+                try:
+                    images = request.files.getlist("image")
+            
+                    for x, image in enumerate(images):
+                        image_r = image.read()
+                        pil_image = Image.open(BytesIO(image_r))
+            
+                        # # Saving A FILE
+                        # file_path = "image/" + str(x) + ".jpg"
+                        # pil_image.save(file_path)
+            
+                        image = np.array(pil_image)
+            
+                        results = HOLISTIC_MODEL.process(image)
+            
+                        pose = (
+                            np.array(
+                                [
+                                    [res.x, res.y, res.z]
+                                    for res in results.pose_landmarks.landmark[0:16]
+                                ]
+                            )
+                            if results.pose_landmarks
+                            else np.zeros([16, 3])
+                        )
+                        lh = (
+                            np.array(
+                                [
+                                    [res.x, res.y, res.z]
+                                    for res in results.left_hand_landmarks.landmark
+                                ]
+                            )
+                            if results.left_hand_landmarks
+                            else np.zeros([21, 3])
+                        )
+                        rh = (
+                            np.array(
+                                [
+                                    [res.x, res.y, res.z]
+                                    for res in results.right_hand_landmarks.landmark
+                                ]
+                            )
+                            if results.right_hand_landmarks
+                            else np.zeros([21, 3])
+                        )
+            
+                        Landmark = np.concatenate([pose, lh, rh])
+            
+                        DATA_LIST.append(Landmark)
+            
+                    RES_1 = MODEL_ULAN_LAND.predict(np.expand_dims(DATA_LIST, 0))
+            
+                    DATA_LIST.clear()
+            
+                    data_set = {
+                        "Result": f"{CLASS_NAMES_ULAN[np.argmax(RES_1)]}",
+                        "Timestamp": time.time(),
+                    }
+            
+                    json_dump = json.dumps(data_set)
+            
+                    return json_dump
+            
+                except Exception as e:
+                    data_set = {"Result": f"{e}", "Timestamp": time.time()}
+                    json_dump = json.dumps(data_set)
+                    return json_dump            
+    </pre
+          >
+        </code>
+      </div>
+    </div>
+
+    <div class="endpoint-card">
+      <h2>/image_collection/</h2>
+      <p>
+        This endpoint allows you to send multiple images for collection, which
+        are saved to a directory.
+      </p>
+      <div class="endpoint-code">
+        <code>
+          <pre>
+            @app.route("/image_collection/", methods=["POST"])
+            def image_collection():
+                vid_count.append([1])
+            
+                action = "image/lilipad/"
+                save_path = action + time.strftime("%Y-%m-%d_%H-%M-%S", time.gmtime()) + "/"
+                if os.path.exists(action):
+                    print(f"Path Exist: {action} : Count {len(vid_count)}")
+                else:
+                    os.mkdir(action)
+            
+                try:
+                    # directory_created
+                    os.mkdir(save_path)
+            
+                    images = request.files.getlist("image")
+            
+                    for x, image in enumerate(images):
+                        image_r = image.read()
+                        pil_image = Image.open(BytesIO(image_r))
+            
+                        # Saving A FILE
+                        file_path = save_path + str(x) + ".jpg"
+                        pil_image.save(file_path)
+            
+                    if len(vid_count) == 60:
+                        data_set = {
+                            "Result": f"Collected {len(vid_count)}",
+                            "Timestamp": time.time(),
+                        }
+            
+                        vid_count.clear()
+            
+                        json_dump = json.dumps(data_set)
+            
+                        return json_dump
+                    else:
+                        data_set = {
+                            "Result": f"Collected {len(vid_count)}",
+                            "Timestamp": time.time(),
+                        }
+            
+                        json_dump = json.dumps(data_set)
+            
+                        return json_dump
+            
+                except Exception as e:
+                    data_set = {"Result": f"{e}", "Timestamp": time.time()}
+                    json_dump = json.dumps(data_set)
+                    return json_dump            
+    </pre
+          >
+        </code>
+      </div>
+    </div>
+  </body>
+</html>
